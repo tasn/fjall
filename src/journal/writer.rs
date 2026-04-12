@@ -194,10 +194,6 @@ impl Writer {
             );
         })?;
 
-        file.sync_all().inspect_err(|e| {
-            log::error!("Failed to fsync journal file at {}: {e:?}", path.display());
-        })?;
-
         Ok(Self {
             path,
             file: BufWriter::new(file),
